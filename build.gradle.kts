@@ -5,8 +5,8 @@ plugins {
     id("io.freefair.lombok") version "8.6"
 }
 
-group = "si.vegamind"
-version = "1.2-local-fork"
+group = "com.aradiors.ftccompanion" // Change this to your own unique group ID
+version = "1.1-extended"
 
 repositories {
     mavenCentral()
