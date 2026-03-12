@@ -1,10 +1,11 @@
 <idea-plugin>
 	<id>si.vegamind.ftccompanion</id>
-	<name>FTC Companion</name>
-	<vendor email="info@firstglobal.si" url="https://github.com/vegamind">VegaMind #22903</vendor>
-	<description>An FTC companion plugin for Android Studio</description>
+	<name>FTC Companion (Local Fork)</name>
+	<vendor email="yoyo@example.com" url="https://github.com/yehon">yoyo (FTC Team Aradiors)</vendor>
+	<description>Local fork of FTC Companion plugin for Android Studio. Originally created by the FTC Team Aradiors.</description>
 	<change-notes>
-		- FTC Companion released
+		- Local fork based on original FTC Companion plugin
+		- Added support for Android Studio Otter (2025.2)
 	</change-notes>
 
 	<depends>com.intellij.modules.platform</depends>
