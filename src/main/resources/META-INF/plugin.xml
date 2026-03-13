@@ -1,5 +1,5 @@
 <idea-plugin>
-	<id>si.vegamind.ftccompanion</id>
+	<id>com.aradiors.ftccompanion</id>
 	<name>FTC Companion (Local Fork)</name>
 	<vendor email="yoyo@example.com" url="https://github.com/yehon">yoyo (FTC Team Aradiors)</vendor>
 	<description>Local fork of FTC Companion plugin for Android Studio. Originally created by the FTC Team Aradiors.</description>
