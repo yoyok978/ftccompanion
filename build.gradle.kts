@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.aradiors.ftccompanion" // Change this to your own unique group ID
-version = "1.1-extended"
+version = "1.1-extended-253"
 
 repositories {
     mavenCentral()
