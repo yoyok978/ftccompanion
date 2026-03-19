@@ -1,0 +1,67 @@
+package ${PACKAGE_NAME};
+
+import com.bylazar.configurables.annotations.Configurable;
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.JoinedTelemetry;
+import com.pedropathing.follower.Follower;
+import com.pedropathing.paths.PathChain;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.seattlesolvers.solverslib.command.CommandOpMode;
+import org.firstinspires.ftc.teamcode.Stats;
+import com.seattlesolvers.solverslib.command.SequentialCommandGroup;
+
+
+@Configurable
+@Autonomous(name = "${NAME}", group = "Auto")
+public class ${NAME} extends CommandOpMode {
+
+    private JoinedTelemetry joinedTelemetry; // Panels Telemetry instance
+    private Follower follower;
+    private Paths paths; // Paths defined in the Paths class
+
+
+    @Override
+    public void initialize() {
+        super.reset();
+
+        joinedTelemetry = new JoinedTelemetry(telemetry, PanelsTelemetry.INSTANCE.getFtcTelemetry());
+
+        joinedTelemetry.addData("Status", "Initialized");
+        joinedTelemetry.update();
+
+
+        Command fullAutoRoutine = new SequentialCommandGroup(
+                //TODO chain commands here
+        );
+
+        schedule(fullAutoRoutine);
+
+    }
+
+    @Override
+    public void run() {
+        // Update Pedro Pathing localization and drive motors every loop
+        follower.update();
+
+        // Must call super.run() so the CommandScheduler executes scheduled commands
+        super.run();
+        Stats.robotPose = follower.getPose();
+
+        //Telemetry
+        joinedTelemetry.addData("X", follower.getPose().getX());
+        joinedTelemetry.addData("Y", follower.getPose().getY());
+        joinedTelemetry.addData("Heading", follower.getPose().getHeading());
+        joinedTelemetry.update();
+
+    }
+
+    public static class Paths {
+        // TODO Create Paths in constructor
+
+        public Paths(Follower follower, RobotCommands robotCommands) {
+
+        }
+
+    }
+
+}

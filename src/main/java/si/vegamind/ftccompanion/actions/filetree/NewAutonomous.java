@@ -1,37 +1,25 @@
 package si.vegamind.ftccompanion.actions.filetree;
 
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.command.WriteCommandAction;
+import com.intellij.icons.AllIcons;
+import com.intellij.ide.actions.CreateFileFromTemplateAction;
+import com.intellij.ide.actions.CreateFileFromTemplateDialog;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
 import com.intellij.psi.PsiDirectory;
-import si.vegamind.ftccompanion.utils.OpModeClassUtils;
 
-public class NewAutonomous extends AnAction {
-	@Override
-	public void actionPerformed(AnActionEvent e) {
-		PsiDirectory directory = OpModeClassUtils.isCreateActionValid(e);
-		if(directory == null) return;
+public class NewAutonomous extends CreateFileFromTemplateAction {
 
-		Project project = e.getProject();
+    public NewAutonomous() {
+        super("Autonomous", "Creates a new Autonomous OpMode class", AllIcons.Nodes.Class);
+    }
 
-		String opModeName = Messages.showInputDialog(
-				e.getProject(),
-				"New Autonomous",
-				"Choose new OpMode name",
-				null
-		);
-		if(opModeName == null) return;
+    @Override
+    protected void buildDialog(Project project, PsiDirectory directory, CreateFileFromTemplateDialog.Builder builder) {
+        builder.setTitle("New Autonomous")
+               .addKind("Autonomous class", AllIcons.Nodes.Class, "Autonomous");
+    }
 
-		WriteCommandAction.runWriteCommandAction(
-				project,
-				OpModeClassUtils.fillOpModeClass(
-						project,
-						opModeName,
-						OpModeClassUtils.createOpModeClass(directory, opModeName),
-						"Autonomous"
-				)
-		);
-	}
+    @Override
+    protected String getActionName(PsiDirectory directory, String newName, String templateName) {
+        return "Create Autonomous: " + newName;
+    }
 }

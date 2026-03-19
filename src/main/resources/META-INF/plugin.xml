@@ -26,25 +26,47 @@
 				id="si.vegamind.ftccompanion.extensions.settings.AppSettingsConfigurable"
 				displayName="FTC Companion"
 		/>
+        <internalFileTemplate name="TeleOp"/>
+        <internalFileTemplate name="Autonomous"/>
+        <internalFileTemplate name="SolversAuto"/>
+        <internalFileTemplate name="SolversTeleOp"/>
 	</extensions>
 
 	<actions>
-		<action
-				id="si.vegamind.ftccompanion.actions.filetree.NewTeleOp"
-				class="si.vegamind.ftccompanion.actions.filetree.NewTeleOp"
-				text="New TeleOp"
-				description="Creates a new TeleOp OpMode class"
-				icon="AllIcons.Actions.GroupByModule">
+		<group id="si.vegamind.ftccompanion.actions.filetree.FTCGroup" text="FTC" popup="true" icon="AllIcons.Nodes.ModuleGroup">
 			<add-to-group group-id="NewGroup" anchor="last"/>
-		</action>
 
-		<action
-				id="si.vegamind.ftccompanion.actions.filetree.NewAutonomous"
-				class="si.vegamind.ftccompanion.actions.filetree.NewAutonomous"
-				text="New Autonomous"
-				description="Creates a new Autonomous OpMode class"
-				icon="AllIcons.Actions.GroupByModule">
-			<add-to-group group-id="NewGroup" anchor="last"/>
-		</action>
+			<action
+					id="si.vegamind.ftccompanion.actions.filetree.NewTeleOp"
+					class="si.vegamind.ftccompanion.actions.filetree.NewTeleOp"
+					text="TeleOp"
+					description="Creates a new TeleOp OpMode class"
+					icon="AllIcons.Nodes.Class">
+			</action>
+
+			<action
+					id="si.vegamind.ftccompanion.actions.filetree.NewAutonomous"
+					class="si.vegamind.ftccompanion.actions.filetree.NewAutonomous"
+					text="Autonomous"
+					description="Creates a new Autonomous OpMode class"
+					icon="AllIcons.Nodes.Class">
+			</action>
+
+			<action
+					id="si.vegamind.ftccompanion.actions.filetree.NewSolversAuto"
+					class="si.vegamind.ftccompanion.actions.filetree.NewSolversAuto"
+					text="SolversAuto"
+					description="Creates a new SolversAuto OpMode class"
+					icon="AllIcons.Nodes.Class">
+			</action>
+
+			<action
+					id="si.vegamind.ftccompanion.actions.filetree.NewSolversTeleOp"
+					class="si.vegamind.ftccompanion.actions.filetree.NewSolversTeleOp"
+					text="SolversTeleOp"
+					description="Creates a new SolversTeleOp OpMode class"
+					icon="AllIcons.Nodes.Class">
+			</action>
+		</group>
 	</actions>
 </idea-plugin>
