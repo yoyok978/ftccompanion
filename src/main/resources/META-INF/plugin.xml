@@ -1,11 +1,18 @@
 <idea-plugin>
 	<id>com.aradiors.ftccompanion</id>
-	<name>FTC Companion (Local Fork)</name>
-	<vendor email="yoyo@example.com" url="https://github.com/yehon">yoyo (FTC Team Aradiors)</vendor>
-	<description>Local fork of FTC Companion plugin for Android Studio. Originally created by the FTC Team Aradiors.</description>
+	<name>FTC Companion Improved</name>
+	<vendor>yoyo (FTC Team Aradiors)</vendor>
+	<description>An IntelliJ and Android Studio plugin for FTC, Originally based on the FTC companion plugin by First Slovenia.
+		Allows easy creation of OpModes using the vanilla ftc sdk as well as SolversLib and PedroPathing.
+	</description>
 	<change-notes>
-		- Local fork based on original FTC Companion plugin
-		- Added support for Android Studio Otter (2025.2)
+		Refactor OpMode creation to use IntelliJ file templates and add Solvers templates
+
+		- Bump plugin version to 1.2.1
+		- Refactor NewAutonomous and NewTeleOp to extend CreateFileFromTemplateAction
+		- Add internal `.java.ft` file templates for Autonomous, TeleOp, SolversAuto, and SolversTeleOp
+		- Create new file tree actions for NewSolversAuto and NewSolversTeleOp
+		- Group all FTC file creation actions under a new "FTC" popup group in plugin.xml
 	</change-notes>
 
 	<depends>com.intellij.modules.platform</depends>
