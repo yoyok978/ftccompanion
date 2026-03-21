@@ -14,7 +14,7 @@ Create OpModes instantly with built-in templates:
 - **SolversTeleOp** - SolversLib TeleOp template
 
 ### 🎨 Custom Templates
-**NEW in v1.3.3** - Create and use your own custom OpMode templates!
+**NEW in v1.4.0** – Create and use your own custom OpMode templates!
 - Configure a custom templates directory
 - Write `.ft` (FileTemplate) files with your team's boilerplate code
 - Templates appear automatically in the IDE menu
@@ -27,7 +27,7 @@ Built-in browser-based access to your Robot Controller:
 - **Control Hub Wi-Fi** (192.168.43.1)
 - **RC Phone Wi-Fi** (192.168.49.1)
 - **USB / REV Hardware Client** (127.0.0.1)
-- **Custom IP** - Configure your own robot IP
+- **Custom IP** – Configure your own robot IP
 
 Access multiple dashboards:
 - Robot Controller Homescreen (`:8080`)

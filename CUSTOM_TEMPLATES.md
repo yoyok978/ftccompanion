@@ -1,6 +1,6 @@
 # Custom Templates Guide
 
-**FTC Companion Improved v1.3.3+**
+**FTC Companion Improved v1.4.0**
 
 Create your own `.ft` (FileTemplate) templates to standardize your team's OpMode boilerplate code!
 
