@@ -1,63 +1,130 @@
-<p align="center">
-  <img src="./assets/logo.svg" width="300px">
-</p>
+# FTC Companion Improved
 
-<h3 align="center">An FTC companion plugin for the Android Studio </h3>
-<br>
+An IntelliJ IDEA and Android Studio plugin for FIRST Tech Challenge (FTC) development, originally based on the FTC Companion plugin by First Slovenia. Enhanced with powerful new features for rapid OpMode development.
 
-<div align="center">
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+## Features
 
-</div>
+### 🚀 Quick OpMode Creation
+Create OpModes instantly with built-in templates:
+- **TeleOp** - Standard TeleOp template
+- **Autonomous** - Standard Autonomous template
+- **SolversAuto** - SolversLib autonomous template
+- **SolversTeleOp** - SolversLib TeleOp template
 
-<img src="assets/screenshots/screenshot.png" />
+### 🎨 Custom Templates
+**NEW in v1.3.3** - Create and use your own custom OpMode templates!
+- Configure a custom templates directory
+- Write `.ft` (FileTemplate) files with your team's boilerplate code
+- Templates appear automatically in the IDE menu
+- Supports all IntelliJ template variables (`${PACKAGE_NAME}`, `${NAME}`, etc.)
 
-## 📄 Docs
-Refer to the [Website][wiki-url].
+[📖 Learn more about custom templates](CUSTOM_TEMPLATES.md)
 
-## 📦 Download
-[<img src="./assets/marketplace.png" width="250"/>](https://plugins.jetbrains.com/plugin/24888-ftc-companion)
+### 🤖 Robot Controller Console
+Built-in browser-based access to your Robot Controller:
+- **Control Hub Wi-Fi** (192.168.43.1)
+- **RC Phone Wi-Fi** (192.168.49.1)
+- **USB / REV Hardware Client** (127.0.0.1)
+- **Custom IP** - Configure your own robot IP
 
-## 🎨 Features
-The FTC companion plugin for Android Studio makes it easier for FTC teams to develop their robots. It includes snippet
-generator, and Robot controller console all within the Android Studio environment.
+Access multiple dashboards:
+- Robot Controller Homescreen (`:8080`)
+- Panels Dashboard (`:8001`)
+- FTC Dashboard (`:8080/dash`)
 
-### Code snippets generators
-FTC Companion includes code snippets generators that make generating OpMode boilerplate code easy. It supports TeleOp
-as well as Autonomous boilerplate generation.
+## Installation
 
-<img src="assets/screenshots/snippet_generator.png" />
-<img src="./assets/screenshots/snippet.png" />
+### From JetBrains Marketplace
+1. Open IntelliJ IDEA or Android Studio
+2. Go to `File` → `Settings` → `Plugins`
+3. Search for "FTC Companion Improved"
+4. Click `Install`
 
-### Robot controller console
-Built in robot console allow for managing settings you would otherwise have to on the robot's web interface. It includes
-Wi-Fi management, sounds manager and so on.
+## Usage
 
-<p align="center" float="left">
-    <img src="./assets/screenshots/console.png">
-    <img src="./assets/screenshots/sounds.png">
-</p>
+### Creating OpModes
+
+1. Right-click on a package in the Project view
+2. Select `New` → `FTC`
+3. Choose from:
+   - **Built-in Templates** (standard OpMode types)
+   - **Custom Templates** (your custom templates)
+4. Enter the class name and create!
+
+### Configuring Custom Templates
+
+1. Go to `File` → `Settings` → `Tools` → `FTC Companion`
+2. Set "Custom Templates Directory" to your templates folder
+3. Click `Apply`
+4. Create `.ft` files in that directory
+
+Example template (`MyTeleOp.java.ft`):
+```java
+package ${PACKAGE_NAME};
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+@TeleOp(name="${NAME}")
+public class ${NAME} extends LinearOpMode {
+    @Override
+    public void runOpMode() {
+        waitForStart();
+        while (opModeIsActive()) {
+            // Your code here
+        }
+    }
+}
+```
+
+### Accessing Robot Controller Console
+
+1. Open the "Robot controller console" tool window (right side panel)
+2. Select your device type from the dropdown
+3. Choose the page you want to access
+4. The browser will load the selected dashboard
+
+For custom IPs:
+1. Go to `Settings` → `Tools` → `FTC Companion`
+2. Enter your robot's IP address
+3. Select "Custom IP" in the tool window dropdown
+
+## Supported Platforms
+
+- **IntelliJ IDEA** 2024.2+
+- **Android Studio** 2024.2+
+- Java 17 or higher
+
+## Requirements
+
+- FTC SDK project
+- Java Development Kit 17+
+
+## Contributing
+
+Contributions are welcome! This plugin is maintained by FTC Team 25262 – Aradiors.
 
 
-## 📜 License
-This software is licensed under the [GPL-3.0 license][license-url]
+## Credits
 
-[contributors-shield]: https://img.shields.io/github/contributors/vegamind/ftccompanion.svg?style=for-the-badge
-[forks-shield]: https://img.shields.io/github/forks/vegamind/ftccompanion.svg?style=for-the-badge
-[stars-shield]: https://img.shields.io/github/stars/vegamind/ftccompanion.svg?style=for-the-badge
-[issues-shield]: https://img.shields.io/github/issues/vegamind/ftccompanion.svg?style=for-the-badge
-[license-shield]: https://img.shields.io/github/license/vegamind/ftccompanion.svg?style=for-the-badge
+- **Original Plugin**: First Slovenia - FTC Companion
+- **Enhanced Version**: FTC Team 25262 – Aradiors (yoyo)
+- **License**: GNU General Public License v3.0
 
-[contributors-url]: https://github.com/vegamind/ftccompanion/graphs/contributors
-[forks-url]: https://github.com/vegamind/ftccompanion/network/members
-[stars-url]: https://github.com/vegamind/ftccompanion/stargazers
-[issues-url]: https://firsttech.si/docs/ftccompanion/
-[license-url]: https://github.com/vegamind/ftccompanion/blob/master/LICENSE
-[wiki-url]: https://github.com/vegamind/ftccompanion/wiki
-[releases-url]: https://github.com/vegamind/ftccompanion/releases
-[discussions-url]: https://github.com/vegamind/ftccompanion/discussions
+### Built With
+- [IntelliJ Platform Plugin SDK](https://plugins.jetbrains.com/docs/intellij/)
+- [Gradle IntelliJ Plugin](https://github.com/JetBrains/gradle-intellij-plugin)
+
+## Support
+
+- **Documentation**: [Custom Templates Guide](CUSTOM_TEMPLATES.md)
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Made with ❤️ for the FTC community**

@@ -5,8 +5,8 @@ plugins {
     id("io.freefair.lombok") version "8.6"
 }
 
-group = "com.aradiors.ftccompanion" // Change this to your own unique group ID
-version = "1.2.2"
+group = "com.aradiors.ftccompanion"
+version = "1.4.0"
 
 repositories {
     mavenCentral()
@@ -15,8 +15,11 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2024.2.1.10")
-    type.set("AI") // Target IDE Platform
+    // Switched to IC (IntelliJ Community) to avoid a known bug in the v1.x Gradle plugin
+    // when parsing recent Android Studio (AI) product-info.json files.
+    // The compiled plugin will still work perfectly in Android Studio.
+    version.set("2024.2.1")
+    type.set("IC") // Target IDE Platform
 
     plugins.set(listOf("com.intellij.java"))
 }
@@ -24,11 +27,11 @@ intellij {
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "21"
-        targetCompatibility = "21"
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "21"
+        kotlinOptions.jvmTarget = "17"
     }
 
     patchPluginXml {

@@ -1,30 +1,34 @@
 package si.vegamind.ftccompanion.extensions.settings;
 
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
-import org.jetbrains.annotations.NonNls;
+import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @State(
-		name = "si.vegamind.ftccompanion.extensions.appservices.AppSettings",
-		storages = {@Storage("FtcCompanion.xml")}
+        name = "si.vegamind.ftccompanion.extensions.settings.AppSettings",
+        storages = @Storage("FTCCompanionSettings.xml")
 )
-public class AppSettings implements PersistentStateComponent<AppSettings.State> {
-	private State myState = new State();
+public class AppSettings implements PersistentStateComponent<AppSettings> {
 
-	@Override
-	public State getState() {
-		return myState;
-	}
+    public String robotIp = "192.168.43.1";
+    public String customTemplatesDirectory = "";
 
-	@Override
-	public void loadState(@NotNull State state) {
-		myState = state;
-	}
+    public static AppSettings getInstance() {
+        return ApplicationManager.getApplication().getService(AppSettings.class);
+    }
 
-	public static class State {
-		@NonNls
-		public String robotIp = "192.168.49.1";
-	}
+    @Nullable
+    @Override
+    public AppSettings getState() {
+        return this;
+    }
+
+    @Override
+    public void loadState(@NotNull AppSettings state) {
+        XmlSerializerUtil.copyBean(state, this);
+    }
 }
