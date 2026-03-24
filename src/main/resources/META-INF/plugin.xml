@@ -18,6 +18,11 @@
 		<p><a href="https://github.com/yoyok978/ftccompanion">Documentation & Source</a></p>
 	]]></description>
 	<change-notes><![CDATA[
+		<h3>Version 1.4.1</h3>
+		<ul>
+			<li><strong>FIX: Android Studio JCEF Support</strong> – Added graceful fallback UI with external browser links when JCEF is missing, preventing plugin crashes on standard Android Studio installations</li>
+			<li><strong>DOC: JCEF Guide</strong> – Added ENABLE_JCEF.md with instructions on how to switch to a JCEF-enabled runtime in Android Studio</li>
+		</ul>
 		<h3>Version 1.4.0</h3>
 		<ul>
 			<li><strong>NEW: Custom Templates</strong> – Create your own .ft template files and use them in the IDE</li>

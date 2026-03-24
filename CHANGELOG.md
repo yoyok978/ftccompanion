@@ -5,7 +5,12 @@ All notable changes to the FTC Companion Improved plugin will be documented in t
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.4.0] - 2026-03-21
+## [1.4.1] - 2024-03-24
+
+### Fixed
+- Fixed a bug where Android Studio instances missing JCEF support would show an empty tool window or throw errors. Now gracefully displays a fallback UI with options to open the console and dashboard in an external browser, along with a help link to enable JCEF in Android Studio.
+
+## [1.4.0] - 2024-03-21
 
 ### Added
 - **Custom Templates Feature** – Users can now create and use custom `.ft` template files
@@ -31,13 +36,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Build compatibility issues with IntelliJ Platform 2024.2.1
 - Return type mismatch in custom template creation
 
-## [1.3.2] - Previous Release
+## [1.3.2] – Previous Release
 
 ### Changed
 - QOL improvements
 - Version bump
 
-## [1.3.1] - Previous Release
+## [1.3.1] – Previous Release
 
 ### Added
 - Refactored OpMode creation to use IntelliJ file templates
@@ -47,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Migrated from custom action classes to IntelliJ's built-in file template system
 - Improved template infrastructure
 
-## [1.3.0] - Previous Release
+## [1.3.0] – Previous Release
 
 ### Added
 - Robot Controller Console tool window
@@ -75,5 +80,3 @@ Based on the original FTC Companion plugin by First Slovenia.
 
 ### From 1.3.1 to 1.3.2+
 No special migration steps required. The plugin now uses IntelliJ's internal file template system which is more robust and maintainable.
-
-

@@ -17,6 +17,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import com.intellij.ide.BrowserUtil;
+import com.intellij.ui.components.labels.LinkLabel;
 
 public class WebControllerConsoleFactory implements ToolWindowFactory {
 
@@ -28,9 +30,34 @@ public class WebControllerConsoleFactory implements ToolWindowFactory {
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         // Check if JCEF is supported in the current IDE environment
         if (!JBCefApp.isSupported()) {
-            toolWindow.getContentManager().addContent(
-                    ContentFactory.getInstance().createContent(new JBLabel("JCEF is not supported in this environment.", SwingConstants.CENTER), "", false)
-            );
+            JPanel panel = new JPanel(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.anchor = GridBagConstraints.CENTER;
+
+            panel.add(new JBLabel("JCEF (Web Browser) is not supported in this Android Studio runtime."), gbc);
+
+            LinkLabel<String> helpLink = new LinkLabel<>("Learn how to enable JCEF in Android Studio", null);
+            helpLink.setListener((aSource, aLinkData) ->
+                BrowserUtil.browse("https://github.com/yoyok978/ftccompanion/blob/master/ENABLE_JCEF.md")
+            , null);
+            panel.add(helpLink, gbc);
+
+            JPanel btnPanel = new JPanel(new FlowLayout());
+            JButton openDashboardBtn = new JButton("Open FTC Dashboard in External Browser");
+            openDashboardBtn.addActionListener(e -> BrowserUtil.browse("http://" + IP_CONTROL_HUB + ":8080/dash"));
+
+            JButton openConsoleBtn = new JButton("Open Robot Console in External Browser");
+            openConsoleBtn.addActionListener(e -> BrowserUtil.browse("http://" + IP_CONTROL_HUB + ":8080"));
+
+            btnPanel.add(openDashboardBtn);
+            btnPanel.add(openConsoleBtn);
+
+            panel.add(btnPanel, gbc);
+
+            Content content = ContentFactory.getInstance().createContent(panel, "", false);
+            toolWindow.getContentManager().addContent(content);
             return;
         }
 
@@ -53,7 +80,7 @@ public class WebControllerConsoleFactory implements ToolWindowFactory {
 
         // Scalable dropdown for device selection
         ComboBox<String> deviceSelector = new ComboBox<>(new String[]{"Control Hub (Wi-Fi)", "RC Phone (Wi-Fi)", "USB / REV Client", "Custom IP"});
-        
+
         JButton refreshButton = new JButton(AllIcons.Actions.Refresh);
         refreshButton.setToolTipText("Reload Page");
 
@@ -63,7 +90,7 @@ public class WebControllerConsoleFactory implements ToolWindowFactory {
             if (selected != null) {
                 String path = paths.get(selected);
                 String targetUrl;
-                
+
                 if (path.startsWith("http")) {
                     targetUrl = path;
                 } else {
@@ -82,9 +109,9 @@ public class WebControllerConsoleFactory implements ToolWindowFactory {
                     targetUrl = "http://" + ip + path;
                 }
 
-                // Briefly show a loading message. 
-                // When testing Google on a normal connection, navigating to a local 
-                // Robot IP that isn't connected will cause the browser to silently wait 
+                // Briefly show a loading message.
+                // When testing Google on a normal connection, navigating to a local
+                // Robot IP that isn't connected will cause the browser to silently wait
                 // to timeout, making it feel "stuck" on the previous page.
                 browser.loadHTML("<html><body style='color: white; font-family: sans-serif; padding: 20px; text-align: center;'>" +
                         "<h2>Loading...</h2><p>" + targetUrl + "</p>" +
@@ -113,7 +140,7 @@ public class WebControllerConsoleFactory implements ToolWindowFactory {
         topPanel.add(pageSelector);
         topPanel.add(deviceSelector);
         topPanel.add(refreshButton);
-        
+
         // Construct the layout
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(browser.getComponent(), BorderLayout.CENTER);
@@ -121,9 +148,9 @@ public class WebControllerConsoleFactory implements ToolWindowFactory {
         // Create the tool window content and attach the browser UI component
         ContentFactory contentFactory = ContentFactory.getInstance();
         Content content = contentFactory.createContent(mainPanel, "", false);
-        
+
         toolWindow.getContentManager().addContent(content);
-        
+
         // Load the initial URL
         loadSelectedUrl.run();
     }
